@@ -37,8 +37,8 @@ export default function Overview() {
         {/* Architecture Overview header + visualization */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Section header + metrics */}
-          <div className="flex items-center justify-between px-4 py-2 border-b border-border flex-shrink-0">
-            <div className="label-upper">Architecture Overview</div>
+          <div className="flex items-center justify-between px-5 py-2.5 border-b border-border flex-shrink-0">
+            <div className="label-upper" style={{ fontSize: '0.68rem' }}>Architecture Overview</div>
             <div className="flex items-center gap-5">
               {[
                 { label: 'Modules', value: mockMetrics.modules },
@@ -46,9 +46,9 @@ export default function Overview() {
                 { label: 'Classes', value: mockMetrics.classes },
                 { label: 'Dependencies', value: mockMetrics.dependencies.toLocaleString() },
               ].map((m) => (
-                <div key={m.label} className="flex items-center gap-1.5">
-                  <span className="text-text-muted" style={{ fontSize: '0.58rem' }}>{m.label}</span>
-                  <span className="text-text-primary font-mono" style={{ fontSize: '0.65rem' }}>{m.value}</span>
+                <div key={m.label} className="flex items-center gap-2">
+                  <span className="text-text-muted" style={{ fontSize: '0.68rem' }}>{m.label}</span>
+                  <span className="text-text-primary font-mono" style={{ fontSize: '0.78rem' }}>{m.value}</span>
                 </div>
               ))}
             </div>
@@ -77,7 +77,7 @@ export default function Overview() {
       {/* Right panel */}
       <div
         className="flex flex-col overflow-y-auto flex-shrink-0"
-        style={{ width: 280, background: '#050505' }}
+        style={{ width: 320, background: '#050505' }}
       >
         <ChangeTimeline onChangeSelect={handleChangeSelect} />
         <ArchitectureGraph />

@@ -18,7 +18,7 @@ export default function Sidebar() {
   return (
     <aside
       className="flex flex-col border-r border-border bg-bg flex-shrink-0 overflow-y-auto"
-      style={{ width: 160 }}
+      style={{ width: 200 }}
     >
       {/* Navigation */}
       <nav className="pt-3 pb-2 border-b border-border">
@@ -28,10 +28,10 @@ export default function Sidebar() {
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
-              className={`nav-item w-full text-left ${isActive ? 'active' : ''}`}
+              className={`nav-item w-full text-left text-sm ${isActive ? 'active' : ''}`}
             >
-              {isActive && <span className="text-text-muted" style={{ fontSize: '0.65rem' }}>▶</span>}
-              {!isActive && <span className="text-text-muted" style={{ fontSize: '0.65rem', opacity: 0.4 }}>›</span>}
+              {isActive && <span className="text-text-muted" style={{ fontSize: '0.75rem' }}>▶</span>}
+              {!isActive && <span className="text-text-muted" style={{ fontSize: '0.75rem', opacity: 0.4 }}>›</span>}
               {item.label}
             </button>
           );
@@ -40,23 +40,23 @@ export default function Sidebar() {
 
       {/* Repository Info */}
       <div className="px-3 py-3 border-b border-border">
-        <div className="label-upper mb-2">Repository</div>
+        <div className="label-upper mb-2" style={{ fontSize: '0.65rem' }}>Repository</div>
         <div className="space-y-1">
           <div className="flex items-center gap-1.5">
             <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.65rem' }}>{mockRepository.name}</span>
+            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.name}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.65rem' }}>{mockRepository.branch} branch</span>
+            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.branch} branch</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.65rem' }}>{mockRepository.commits.toLocaleString()} commits</span>
+            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.commits.toLocaleString()} commits</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.65rem' }}>{mockRepository.stack}</span>
+            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.stack}</span>
           </div>
         </div>
       </div>
@@ -66,12 +66,12 @@ export default function Sidebar() {
         <div className="label-upper mb-2">Time Range</div>
         <div className="space-y-1 mb-2">
           <div className="flex justify-between">
-            <span className="text-text-muted" style={{ fontSize: '0.6rem' }}>From:</span>
-            <span className="text-text-secondary font-mono" style={{ fontSize: '0.6rem' }}>2023-01-01</span>
+            <span className="text-text-muted" style={{ fontSize: '0.7rem' }}>From:</span>
+            <span className="text-text-secondary font-mono" style={{ fontSize: '0.7rem' }}>2023-01-01</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-text-muted" style={{ fontSize: '0.6rem' }}>To:</span>
-            <span className="text-text-secondary font-mono" style={{ fontSize: '0.6rem' }}>2025-06-12</span>
+            <span className="text-text-muted" style={{ fontSize: '0.7rem' }}>To:</span>
+            <span className="text-text-secondary font-mono" style={{ fontSize: '0.7rem' }}>2025-06-12</span>
           </div>
         </div>
         {/* Minimal slider */}
@@ -84,15 +84,15 @@ export default function Sidebar() {
 
       {/* Analysis Status */}
       <div className="px-3 py-3 flex-1">
-        <div className="label-upper mb-2">Analysis Status</div>
+        <div className="label-upper mb-2" style={{ fontSize: '0.65rem' }}>Analysis Status</div>
         <div className="space-y-1.5">
           {mockAnalysisStatus.map((item) => (
             <div key={item.label} className="flex items-center justify-between">
               <div className="flex items-center gap-1.5">
                 <span className="status-dot ready" />
-                <span className="text-text-secondary" style={{ fontSize: '0.6rem' }}>{item.label}</span>
+                <span className="text-text-secondary" style={{ fontSize: '0.72rem' }}>{item.label}</span>
               </div>
-              <span className="text-text-muted font-mono" style={{ fontSize: '0.55rem', letterSpacing: '0.05em' }}>
+              <span className="text-text-muted font-mono" style={{ fontSize: '0.65rem', letterSpacing: '0.05em' }}>
                 {item.status}
               </span>
             </div>

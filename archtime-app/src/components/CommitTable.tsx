@@ -14,16 +14,16 @@ export default function CommitTable({ onCommitSelect }: CommitTableProps) {
       <div
         className="grid border-b border-border"
         style={{
-          gridTemplateColumns: '60px 1fr 110px 90px 1fr',
-          padding: '4px 12px',
+          gridTemplateColumns: '72px 1fr 120px 100px 1fr',
+          padding: '6px 14px',
           borderTop: '1px solid #1a1a1a',
         }}
       >
-        <div className="label-upper">SHA</div>
-        <div className="label-upper">Message</div>
-        <div className="label-upper">Author</div>
-        <div className="label-upper">Date</div>
-        <div className="label-upper">Architectural Change</div>
+        <div className="label-upper" style={{ fontSize: '0.65rem' }}>SHA</div>
+        <div className="label-upper" style={{ fontSize: '0.65rem' }}>Message</div>
+        <div className="label-upper" style={{ fontSize: '0.65rem' }}>Author</div>
+        <div className="label-upper" style={{ fontSize: '0.65rem' }}>Date</div>
+        <div className="label-upper" style={{ fontSize: '0.65rem' }}>Architectural Change</div>
       </div>
 
       {/* Rows */}
@@ -34,8 +34,8 @@ export default function CommitTable({ onCommitSelect }: CommitTableProps) {
             key={commit.sha}
             className="grid border-b cursor-pointer"
             style={{
-              gridTemplateColumns: '60px 1fr 110px 90px 1fr',
-              padding: '5px 12px',
+              gridTemplateColumns: '72px 1fr 120px 100px 1fr',
+              padding: '7px 14px',
               borderBottomColor: '#111',
               background: isHovered ? 'rgba(255,255,255,0.025)' : 'transparent',
               transition: 'background 0.1s',
@@ -49,7 +49,7 @@ export default function CommitTable({ onCommitSelect }: CommitTableProps) {
             <span
               className="font-mono"
               style={{
-                fontSize: '0.62rem',
+                fontSize: '0.73rem',
                 color: isHovered ? '#f0f0f0' : '#888',
                 transition: 'color 0.1s',
               }}
@@ -59,7 +59,7 @@ export default function CommitTable({ onCommitSelect }: CommitTableProps) {
             <span
               className="font-mono"
               style={{
-                fontSize: '0.62rem',
+                fontSize: '0.73rem',
                 color: isHovered ? '#c0c0c0' : '#606060',
                 paddingRight: 8,
                 overflow: 'hidden',
@@ -69,13 +69,13 @@ export default function CommitTable({ onCommitSelect }: CommitTableProps) {
             >
               {commit.message}
             </span>
-            <span style={{ fontSize: '0.6rem', color: '#606060' }}>
+            <span style={{ fontSize: '0.72rem', color: '#606060' }}>
               {commit.author}
             </span>
-            <span className="font-mono" style={{ fontSize: '0.6rem', color: '#555' }}>
+            <span className="font-mono" style={{ fontSize: '0.72rem', color: '#555' }}>
               {commit.date}
             </span>
-            <span style={{ fontSize: '0.6rem', color: isHovered ? '#c0c0c0' : '#606060' }}>
+            <span style={{ fontSize: '0.72rem', color: isHovered ? '#c0c0c0' : '#606060' }}>
               {commit.architecturalChange}
             </span>
           </div>

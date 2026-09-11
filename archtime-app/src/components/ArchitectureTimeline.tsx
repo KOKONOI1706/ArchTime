@@ -13,7 +13,7 @@ export default function ArchitectureTimeline({ selectedEvent, onEventSelect }: A
 
   return (
     <div className="px-4 py-3 border-t border-border flex-shrink-0" style={{ background: '#050505' }}>
-      <div className="label-upper mb-3">Architecture Evolution Timeline</div>
+      <div className="label-upper mb-3" style={{ fontSize: '0.68rem' }}>Architecture Evolution Timeline</div>
 
       <div className="relative" style={{ height: 72 }}>
         {/* Main line */}
@@ -82,8 +82,8 @@ export default function ArchitectureTimeline({ selectedEvent, onEventSelect }: A
               <div className="mt-1.5 text-center" style={{ minWidth: 70, transform: 'translateX(-30%)' }}>
                 <div
                   className="event-label font-mono"
-                  style={{
-                    fontSize: '0.58rem',
+                style={{
+                  fontSize: '0.68rem',
                     color: isSelected ? '#f0f0f0' : isHovered ? '#c0c0c0' : '#606060',
                     transition: 'color 0.1s',
                     lineHeight: 1.3,
@@ -92,7 +92,7 @@ export default function ArchitectureTimeline({ selectedEvent, onEventSelect }: A
                 >
                   {event.title}
                 </div>
-                <div style={{ fontSize: '0.52rem', color: '#444', whiteSpace: 'nowrap' }}>
+                <div style={{ fontSize: '0.62rem', color: '#444', whiteSpace: 'nowrap' }}>
                   {event.subtitle}
                 </div>
               </div>

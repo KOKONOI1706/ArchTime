@@ -10,7 +10,7 @@ export default function ChangeTimeline({ onChangeSelect }: ChangeTimelineProps) 
 
   return (
     <div className="px-3 py-3 border-b border-border">
-      <div className="label-upper mb-3">Recent Architectural Changes</div>
+      <div className="label-upper mb-3" style={{ fontSize: '0.68rem' }}>Recent Architectural Changes</div>
 
       <div className="space-y-0">
         {mockArchitecturalChanges.map((change) => {
@@ -49,7 +49,7 @@ export default function ChangeTimeline({ onChangeSelect }: ChangeTimelineProps) 
               <div>
                 <div
                   style={{
-                    fontSize: '0.65rem',
+                    fontSize: '0.75rem',
                     color: isHovered ? '#f0f0f0' : '#c0c0c0',
                     transition: 'color 0.1s',
                     fontWeight: 500,
@@ -58,18 +58,18 @@ export default function ChangeTimeline({ onChangeSelect }: ChangeTimelineProps) 
                   {change.type}
                 </div>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-text-muted font-mono" style={{ fontSize: '0.58rem' }}>
+                  <span className="text-text-muted font-mono" style={{ fontSize: '0.68rem' }}>
                     {change.date} {change.time}
                   </span>
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
                   {change.from && (
                     <>
-                      <span className="text-text-muted font-mono" style={{ fontSize: '0.58rem' }}>{change.from}</span>
-                      <span className="text-text-muted" style={{ fontSize: '0.55rem' }}>→</span>
+                      <span className="text-text-muted font-mono" style={{ fontSize: '0.68rem' }}>{change.from}</span>
+                      <span className="text-text-muted" style={{ fontSize: '0.65rem' }}>→</span>
                     </>
                   )}
-                  <span className="text-text-secondary font-mono" style={{ fontSize: '0.58rem' }}>{change.to}</span>
+                  <span className="text-text-secondary font-mono" style={{ fontSize: '0.68rem' }}>{change.to}</span>
                 </div>
               </div>
             </div>

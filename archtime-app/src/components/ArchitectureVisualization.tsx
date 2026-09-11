@@ -269,27 +269,27 @@ function HudTooltip({ module, x, y, containerRect }: TooltipProps) {
   return (
     <div
       className="tooltip-hud pointer-events-none"
-      style={{ left: relX, top: relY, position: 'absolute', zIndex: 50 }}
+      style={{ left: relX, top: relY, position: 'absolute', zIndex: 50, minWidth: 180 }}
     >
-      <div className="text-text-primary font-mono mb-1.5" style={{ fontSize: '0.68rem', fontWeight: 600 }}>
+      <div className="text-text-primary font-mono mb-2" style={{ fontSize: '0.78rem', fontWeight: 600 }}>
         {module.name}
       </div>
       <div className="space-y-0.5">
         <div className="flex justify-between gap-4">
-          <span className="text-text-muted" style={{ fontSize: '0.58rem' }}>Module:</span>
-          <span className="text-text-secondary font-mono" style={{ fontSize: '0.58rem' }}>{module.id}</span>
+          <span className="text-text-muted" style={{ fontSize: '0.68rem' }}>Module:</span>
+          <span className="text-text-secondary font-mono" style={{ fontSize: '0.68rem' }}>{module.id}</span>
         </div>
         <div className="flex justify-between gap-4">
-          <span className="text-text-muted" style={{ fontSize: '0.58rem' }}>Classes:</span>
-          <span className="text-text-secondary font-mono" style={{ fontSize: '0.58rem' }}>{module.classes}</span>
+          <span className="text-text-muted" style={{ fontSize: '0.68rem' }}>Classes:</span>
+          <span className="text-text-secondary font-mono" style={{ fontSize: '0.68rem' }}>{module.classes}</span>
         </div>
         <div className="flex justify-between gap-4">
-          <span className="text-text-muted" style={{ fontSize: '0.58rem' }}>Dependencies:</span>
-          <span className="text-text-secondary font-mono" style={{ fontSize: '0.58rem' }}>{module.dependencies}</span>
+          <span className="text-text-muted" style={{ fontSize: '0.68rem' }}>Dependencies:</span>
+          <span className="text-text-secondary font-mono" style={{ fontSize: '0.68rem' }}>{module.dependencies}</span>
         </div>
         <div className="flex justify-between gap-4">
-          <span className="text-text-muted" style={{ fontSize: '0.58rem' }}>Since:</span>
-          <span className="text-text-secondary font-mono" style={{ fontSize: '0.58rem' }}>{module.since}</span>
+          <span className="text-text-muted" style={{ fontSize: '0.68rem' }}>Since:</span>
+          <span className="text-text-secondary font-mono" style={{ fontSize: '0.68rem' }}>{module.since}</span>
         </div>
       </div>
     </div>
@@ -343,10 +343,10 @@ export default function ArchitectureVisualization({ mode, onModeChange }: Archit
       </div>
 
       {/* Corner HUD decorations */}
-      <div className="absolute top-0 left-0 text-text-dim font-mono pointer-events-none" style={{ fontSize: '0.5rem', padding: 6 }}>
+      <div className="absolute top-0 left-0 text-text-dim font-mono pointer-events-none" style={{ fontSize: '0.6rem', padding: 8 }}>
         MODULE_SPACE / DEP_INTENSITY / TIME
       </div>
-      <div className="absolute bottom-0 right-0 text-text-dim font-mono pointer-events-none" style={{ fontSize: '0.5rem', padding: 6 }}>
+      <div className="absolute bottom-0 right-0 text-text-dim font-mono pointer-events-none" style={{ fontSize: '0.6rem', padding: 8 }}>
         ΔT 2023.01 → 2025.06
       </div>
 
