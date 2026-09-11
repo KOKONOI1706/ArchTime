@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { mockArchNodes, mockArchEdges } from '../data/mockData';
 
 export default function ArchitectureGraph() {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+
 
   const highlightedEdges = hoveredNode
     ? mockArchEdges.filter((e) => e.from === hoveredNode || e.to === hoveredNode)

@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ArchitectureVisualization from '../components/ArchitectureVisualization';
 import ArchitectureTimeline from '../components/ArchitectureTimeline';
 import ChangeTimeline from '../components/ChangeTimeline';
@@ -9,10 +8,10 @@ import AIExplanation from '../components/AIExplanation';
 import CommitTable from '../components/CommitTable';
 import EvidencePanel from '../components/EvidencePanel';
 import DiffView from '../components/DiffView';
-import { mockMetrics, type TimelineEvent, type ArchitecturalChange, type Commit } from '../data/mockData';
+import { mockMetrics, type TimelineEvent, type ArchitecturalChange } from '../data/mockData';
 
 export default function Overview() {
-  const navigate = useNavigate();
+
   const [vizMode, setVizMode] = useState<'3D' | '2D' | 'GRAPH'>('3D');
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
   const [showEvidence, setShowEvidence] = useState(false);
@@ -26,7 +25,7 @@ export default function Overview() {
     setShowDiff(true);
   }, []);
 
-  const handleCommitSelect = useCallback((_: Commit) => {
+  const handleCommitSelect = useCallback((_: unknown) => {
     setShowDiff(true);
   }, []);
 

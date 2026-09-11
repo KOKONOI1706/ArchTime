@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ArchitectureTimeline from '../components/ArchitectureTimeline';
 import CommitTable from '../components/CommitTable';
 import DiffView from '../components/DiffView';
-import { mockTimelineEvents, type TimelineEvent, type Commit } from '../data/mockData';
+import { mockTimelineEvents, type TimelineEvent } from '../data/mockData';
 
 export default function Timeline() {
   const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(mockTimelineEvents[0]);
