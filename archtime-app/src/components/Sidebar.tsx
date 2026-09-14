@@ -8,10 +8,7 @@ interface NavSection {
 }
 
 const navSections: NavSection[] = [
-  {
-    label: 'Workspace',
-    items: [{ label: 'Overview', path: '/' }],
-  },
+  { label: 'Workspace', items: [{ label: 'Overview', path: '/' }] },
   {
     label: 'Analysis',
     items: [
@@ -21,14 +18,8 @@ const navSections: NavSection[] = [
       { label: 'Evidence', path: '/evidence' },
     ],
   },
-  {
-    label: 'Intelligence',
-    items: [{ label: 'AI Analyst', path: '/analyst' }],
-  },
-  {
-    label: 'System',
-    items: [{ label: 'Settings', path: '/settings' }],
-  },
+  { label: 'Intelligence', items: [{ label: 'AI Analyst', path: '/analyst' }] },
+  { label: 'System', items: [{ label: 'Settings', path: '/settings' }] },
 ];
 
 export default function Sidebar() {
@@ -37,13 +28,12 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="flex flex-col border-r-subtle bg-bg flex-shrink-0 overflow-y-auto"
-      style={{ width: 228, background: '#080b0f' }}
+      className="flex flex-col border-r-subtle flex-shrink-0 overflow-y-auto"
+      style={{ width: 236, background: '#0d1117' }}
     >
-      {/* Navigation sections */}
-      <nav className="flex-1 pt-2">
+      <nav className="flex-1 pt-3">
         {navSections.map((section) => (
-          <div key={section.label} className="mb-1">
+          <div key={section.label} className="mb-2">
             <div className="nav-section-label">{section.label}</div>
             {section.items.map((item) => {
               const isActive = location.pathname === item.path;
@@ -63,54 +53,38 @@ export default function Sidebar() {
       </nav>
 
       {/* Repository context */}
-      <div
-        className="px-4 py-3 border-t-subtle"
-        style={{ borderTop: '1px solid #141c25' }}
-      >
+      <div style={{ padding: '12px 16px', borderTop: '1px solid #21262d' }}>
         <div className="label-upper mb-2">Repository</div>
-        <div style={{ fontSize: '0.75rem', color: '#a0aec0', fontWeight: 500, marginBottom: 2 }}>
-          {mockRepository.owner}
-          <span style={{ color: '#2d3748' }}>/</span>
-          {mockRepository.name}
+        <div style={{ fontSize: '0.82rem', color: '#c9d1d9', fontWeight: 500, marginBottom: 3 }}>
+          <span style={{ color: '#6e7681' }}>{mockRepository.owner}/</span>
+          <span style={{ color: '#e6edf3' }}>{mockRepository.name}</span>
         </div>
-        <div style={{ fontSize: '0.68rem', color: '#4a5568', fontFamily: 'JetBrains Mono, monospace' }}>
+        <div style={{ fontSize: '0.75rem', color: '#8b949e', fontFamily: 'JetBrains Mono, monospace', marginBottom: 3 }}>
           {mockRepository.branch}
         </div>
-        <div
-          className="flex items-center gap-1.5 mt-1"
-          style={{ fontSize: '0.65rem', color: '#3d4f63' }}
-        >
-          <span style={{ fontFamily: 'JetBrains Mono, monospace' }}>
-            {mockRepository.commits.toLocaleString()} commits
-          </span>
-          <span>·</span>
-          <span>{mockRepository.language}</span>
+        <div style={{ fontSize: '0.72rem', color: '#6e7681' }}>
+          {mockRepository.commits.toLocaleString()} commits · {mockRepository.language}
         </div>
       </div>
 
       {/* Analysis status */}
-      <div
-        className="px-4 py-3"
-        style={{ borderTop: '1px solid #141c25' }}
-      >
-        <div className="label-upper mb-2">Analysis Status</div>
-        <div className="space-y-1.5">
+      <div style={{ padding: '12px 16px', borderTop: '1px solid #21262d' }}>
+        <div className="label-upper mb-3">Analysis Status</div>
+        <div className="space-y-2">
           {mockAnalysisStatus.map((item) => (
-            <StatusIndicator
-              key={item.label}
-              status={item.status}
-              label={item.label}
-            />
+            <div key={item.label} className="flex items-center gap-2">
+              <StatusIndicator status={item.status} />
+              <span style={{ fontSize: '0.78rem', color: '#8b949e' }}>{item.label}</span>
+            </div>
           ))}
         </div>
       </div>
 
       {/* Add repository */}
-      <div className="px-4 py-3" style={{ borderTop: '1px solid #141c25' }}>
+      <div style={{ padding: '10px 16px', borderTop: '1px solid #21262d' }}>
         <button
           onClick={() => navigate('/onboarding')}
           className="btn-action w-full text-left"
-          style={{ fontSize: '0.68rem' }}
         >
           + Add Repository
         </button>
