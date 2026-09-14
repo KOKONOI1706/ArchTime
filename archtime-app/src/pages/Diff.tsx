@@ -1,9 +1,12 @@
-import DiffView from '../components/DiffView';
+// This page has been superseded by ArchitecturalChanges.tsx.
+// Kept as a redirect stub.
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Diff() {
-  return (
-    <div className="h-full overflow-y-auto" style={{ background: '#050505' }}>
-      <DiffView inline />
-    </div>
-  );
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate('/changes', { replace: true });
+  }, [navigate]);
+  return null;
 }

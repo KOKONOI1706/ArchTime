@@ -233,7 +233,7 @@ function GraphView() {
           <line key={`hg${i}`} x1={0} y1={i * 20} x2={800} y2={i * 20} stroke="#0d0d0d" strokeWidth={0.5} />
         ))}
         {Array.from({ length: 41 }).map((_, i) => (
-          <line key={`vg${i}`} x1={i * 20} y1={0} x2={i * 20} y2={420} stroke="#0d0d0d} strokeWidth={0.5}" />
+          <line key={`vg${i}`} x1={i * 20} y1={0} x2={i * 20} y2={420} stroke="#0d0d0d" strokeWidth={0.5} />
         ))}
 
         {edges.map((e, i) => (
@@ -343,10 +343,10 @@ export default function ArchitectureVisualization({ mode, onModeChange }: Archit
       </div>
 
       {/* Corner HUD decorations */}
-      <div className="absolute top-0 left-0 text-text-dim font-mono pointer-events-none" style={{ fontSize: '0.6rem', padding: 8 }}>
+      <div className="absolute top-0 left-0 pointer-events-none" style={{ fontSize: '0.58rem', padding: 8, color: '#1a2332', fontFamily: 'JetBrains Mono, monospace' }}>
         MODULE_SPACE / DEP_INTENSITY / TIME
       </div>
-      <div className="absolute bottom-0 right-0 text-text-dim font-mono pointer-events-none" style={{ fontSize: '0.6rem', padding: 8 }}>
+      <div className="absolute bottom-0 right-0 pointer-events-none" style={{ fontSize: '0.58rem', padding: 8, color: '#1a2332', fontFamily: 'JetBrains Mono, monospace' }}>
         ΔT 2023.01 → 2025.06
       </div>
 

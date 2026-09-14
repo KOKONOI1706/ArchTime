@@ -1,14 +1,34 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { mockRepository, mockAnalysisStatus } from '../data/mockData';
+import StatusIndicator from './shared/StatusIndicator';
 
-const navItems = [
-  { label: 'Overview', path: '/' },
-  { label: 'Timeline', path: '/timeline' },
-  { label: 'Architecture', path: '/architecture' },
-  { label: 'Diff', path: '/diff' },
-  { label: 'Evidence', path: '/evidence' },
-  { label: 'AI Assistant', path: '/ai' },
-  { label: 'Settings', path: '/settings' },
+interface NavSection {
+  label: string;
+  items: { label: string; path: string }[];
+}
+
+const navSections: NavSection[] = [
+  {
+    label: 'Workspace',
+    items: [{ label: 'Overview', path: '/' }],
+  },
+  {
+    label: 'Analysis',
+    items: [
+      { label: 'Timeline', path: '/timeline' },
+      { label: 'Architecture', path: '/architecture' },
+      { label: 'Architectural Changes', path: '/changes' },
+      { label: 'Evidence', path: '/evidence' },
+    ],
+  },
+  {
+    label: 'Intelligence',
+    items: [{ label: 'AI Analyst', path: '/analyst' }],
+  },
+  {
+    label: 'System',
+    items: [{ label: 'Settings', path: '/settings' }],
+  },
 ];
 
 export default function Sidebar() {
@@ -17,87 +37,83 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="flex flex-col border-r border-border bg-bg flex-shrink-0 overflow-y-auto"
-      style={{ width: 200 }}
+      className="flex flex-col border-r-subtle bg-bg flex-shrink-0 overflow-y-auto"
+      style={{ width: 228, background: '#080b0f' }}
     >
-      {/* Navigation */}
-      <nav className="pt-3 pb-2 border-b border-border">
-        {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
-          return (
-            <button
-              key={item.path}
-              onClick={() => navigate(item.path)}
-              className={`nav-item w-full text-left text-sm ${isActive ? 'active' : ''}`}
-            >
-              {isActive && <span className="text-text-muted" style={{ fontSize: '0.75rem' }}>▶</span>}
-              {!isActive && <span className="text-text-muted" style={{ fontSize: '0.75rem', opacity: 0.4 }}>›</span>}
-              {item.label}
-            </button>
-          );
-        })}
+      {/* Navigation sections */}
+      <nav className="flex-1 pt-2">
+        {navSections.map((section) => (
+          <div key={section.label} className="mb-1">
+            <div className="nav-section-label">{section.label}</div>
+            {section.items.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <button
+                  key={item.path}
+                  onClick={() => navigate(item.path)}
+                  className={`nav-item ${isActive ? 'active' : ''}`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        ))}
       </nav>
 
-      {/* Repository Info */}
-      <div className="px-3 py-3 border-b border-border">
-        <div className="label-upper mb-2" style={{ fontSize: '0.65rem' }}>Repository</div>
-        <div className="space-y-1">
-          <div className="flex items-center gap-1.5">
-            <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.name}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.branch} branch</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.commits.toLocaleString()} commits</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="status-dot" style={{ width: 4, height: 4 }} />
-            <span className="text-text-secondary" style={{ fontSize: '0.75rem' }}>{mockRepository.stack}</span>
-          </div>
+      {/* Repository context */}
+      <div
+        className="px-4 py-3 border-t-subtle"
+        style={{ borderTop: '1px solid #141c25' }}
+      >
+        <div className="label-upper mb-2">Repository</div>
+        <div style={{ fontSize: '0.75rem', color: '#a0aec0', fontWeight: 500, marginBottom: 2 }}>
+          {mockRepository.owner}
+          <span style={{ color: '#2d3748' }}>/</span>
+          {mockRepository.name}
+        </div>
+        <div style={{ fontSize: '0.68rem', color: '#4a5568', fontFamily: 'JetBrains Mono, monospace' }}>
+          {mockRepository.branch}
+        </div>
+        <div
+          className="flex items-center gap-1.5 mt-1"
+          style={{ fontSize: '0.65rem', color: '#3d4f63' }}
+        >
+          <span style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+            {mockRepository.commits.toLocaleString()} commits
+          </span>
+          <span>·</span>
+          <span>{mockRepository.language}</span>
         </div>
       </div>
 
-      {/* Time Range */}
-      <div className="px-3 py-3 border-b border-border">
-        <div className="label-upper mb-2">Time Range</div>
-        <div className="space-y-1 mb-2">
-          <div className="flex justify-between">
-            <span className="text-text-muted" style={{ fontSize: '0.7rem' }}>From:</span>
-            <span className="text-text-secondary font-mono" style={{ fontSize: '0.7rem' }}>2023-01-01</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-text-muted" style={{ fontSize: '0.7rem' }}>To:</span>
-            <span className="text-text-secondary font-mono" style={{ fontSize: '0.7rem' }}>2025-06-12</span>
-          </div>
-        </div>
-        {/* Minimal slider */}
-        <div className="relative h-1 bg-border-bright rounded-full">
-          <div className="absolute left-0 top-0 h-full bg-accent-dim rounded-full" style={{ width: '100%' }} />
-          <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-text-primary border border-border rounded-full" style={{ left: 0 }} />
-          <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-text-primary border border-border rounded-full" style={{ right: 0 }} />
-        </div>
-      </div>
-
-      {/* Analysis Status */}
-      <div className="px-3 py-3 flex-1">
-        <div className="label-upper mb-2" style={{ fontSize: '0.65rem' }}>Analysis Status</div>
+      {/* Analysis status */}
+      <div
+        className="px-4 py-3"
+        style={{ borderTop: '1px solid #141c25' }}
+      >
+        <div className="label-upper mb-2">Analysis Status</div>
         <div className="space-y-1.5">
           {mockAnalysisStatus.map((item) => (
-            <div key={item.label} className="flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
-                <span className="status-dot ready" />
-                <span className="text-text-secondary" style={{ fontSize: '0.72rem' }}>{item.label}</span>
-              </div>
-              <span className="text-text-muted font-mono" style={{ fontSize: '0.65rem', letterSpacing: '0.05em' }}>
-                {item.status}
-              </span>
-            </div>
+            <StatusIndicator
+              key={item.label}
+              status={item.status}
+              label={item.label}
+            />
           ))}
         </div>
+      </div>
+
+      {/* Add repository */}
+      <div className="px-4 py-3" style={{ borderTop: '1px solid #141c25' }}>
+        <button
+          onClick={() => navigate('/onboarding')}
+          className="btn-action w-full text-left"
+          style={{ fontSize: '0.68rem' }}
+        >
+          + Add Repository
+        </button>
       </div>
     </aside>
   );

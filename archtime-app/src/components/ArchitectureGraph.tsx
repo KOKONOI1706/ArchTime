@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { mockArchNodes, mockArchEdges } from '../data/mockData';
 
-export default function ArchitectureGraph() {
+interface ArchitectureGraphProps {
+  onNodeSelect?: (id: string) => void;
+  compact?: boolean;
+}
+
+export default function ArchitectureGraph({ onNodeSelect, compact = false }: ArchitectureGraphProps) {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
 
@@ -17,13 +22,13 @@ export default function ArchitectureGraph() {
 
   // Layout: scale all positions uniformly
   const W = 400;
-  const H = 260;
+  const H = compact ? 180 : 260;
 
   const nodeMap = Object.fromEntries(mockArchNodes.map((n) => [n.id, n]));
 
   return (
-    <div className="px-3 py-3 border-b border-border">
-      <div className="label-upper mb-2">Current Architecture</div>
+    <div style={{ paddingBottom: compact ? 0 : undefined }}>
+      {!compact && <div className="label-upper mb-2" style={{ padding: '4px 12px 0' }}>Current Architecture</div>}
 
       <div className="relative" style={{ width: '100%', height: H }}>
         <svg
@@ -37,7 +42,7 @@ export default function ArchitectureGraph() {
             <line key={`hg${i}`} x1={0} y1={i * 20} x2={W} y2={i * 20} stroke="#0d0d0d" strokeWidth={0.5} />
           ))}
           {Array.from({ length: 20 }).map((_, i) => (
-            <line key={`vg${i}`} x1={i * 20} y1={0} x2={i * 20} y2={H} stroke="#0d0d0d" strokeWidth={0.5} />
+            <line key={`vg${i}`} x1={i * 20} y1={0} x2={i * 20} y2={H} stroke="#0d0d0d" strokeWidth={0.3} />
           ))}
 
           {/* Edges */}
@@ -62,7 +67,7 @@ export default function ArchitectureGraph() {
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke={isHighlighted ? '#888' : '#222'}
+                stroke={isHighlighted ? '#4299e1' : '#1a2332'}
                 strokeWidth={isHighlighted ? 1.5 : 1}
                 style={{ transition: 'stroke 0.1s' }}
               />
@@ -80,6 +85,7 @@ export default function ArchitectureGraph() {
                 key={node.id}
                 onMouseEnter={() => setHoveredNode(node.id)}
                 onMouseLeave={() => setHoveredNode(null)}
+                onClick={() => onNodeSelect?.(node.id)}
                 style={{ cursor: 'pointer' }}
               >
                 <rect
@@ -87,8 +93,8 @@ export default function ArchitectureGraph() {
                   y={node.y}
                   width={node.w}
                   height={node.h}
-                  fill={isHovered ? '#1a1a1a' : '#0d0d0d'}
-                  stroke={isHovered ? '#888' : isConnected ? '#3a3a3a' : '#1a1a1a'}
+                  fill={isHovered ? '#0f1922' : '#0c1117'}
+                  stroke={isHovered ? '#4299e1' : isConnected ? '#2d4060' : '#141c25'}
                   strokeWidth={1}
                   style={{ transition: 'all 0.1s' }}
                   opacity={isDimmed ? 0.3 : 1}
@@ -97,7 +103,7 @@ export default function ArchitectureGraph() {
                   x={node.x + node.w / 2}
                   y={node.y + 14}
                   textAnchor="middle"
-                  fill={isDimmed ? '#333' : isHovered ? '#f0f0f0' : '#888'}
+                  fill={isDimmed ? '#2d3748' : isHovered ? '#e2e8f0' : '#718096'}
                   fontSize={8}
                   fontFamily="JetBrains Mono, monospace"
                   style={{ transition: 'fill 0.1s' }}
